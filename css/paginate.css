@@ -1,0 +1,39 @@
+/* Screen styles */
+figure.svg-container {
+  display: block;
+  overflow: scroll;
+  max-width: 90vw;
+  max-height: 90vh;
+  border:gray solid thin;
+}
+
+svg.print {
+  display: none;
+}
+
+@media print{
+  figure.svg-container {
+    display: inline;
+    overflow: auto;
+    border: none;
+  }
+  svg.screen {
+    display: none;
+  }
+  svg.print {
+    overflow: hidden;
+    border: thin lightgray solid;
+    padding: 0.5em;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+@media print and (orientation: landscape){
+  svg.print.landscape {
+    display: block;
+    height: 7in;
+    width: 10in;
+  }
+}

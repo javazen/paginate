@@ -1,0 +1,164 @@
+<head>
+    <meta charset="utf-8">
+    <title>paginate</title>
+    <style>
+        figure.svg-container {
+            display: block;
+            overflow: scroll;
+            max-width: 90vw;
+            max-height: 90vh;
+            border:gray solid thin;
+        }
+        svg.print {
+            display: none;
+        }
+        @media print {
+            figure.svg-container {
+                display: inline;
+                overflow: auto;
+                border: none;
+            }
+            svg.screen {
+                display: none;
+            }
+            svg.print {
+                overflow: hidden;
+                border: thin lightgray solid;
+                padding: 0.5em;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+        }
+        @media print and (orientation: landscape){
+            svg.print.landscape {
+                display: block;
+                height: 7in;
+                width: 10in;
+            }
+        }
+    </style>
+</head>
+<body>
+    <figure class="svg-container">
+        <svg class="screen" width="18in" height="12in" viewBox="0 0 1800 1200">
+            <g id="graphic"></g>
+        </svg>
+        <!-- For printing in landscape mode, the graphic is divided into four
+        overlapping quadrants which will each fit on a letter/A4 page without scaling.  
+        The 1000*700 viewBox is equivalent to 10in*7in of the onscreen dimensions. -->
+        <svg class="print landscape" viewBox="0 0 1000 700">
+            <use xlink:href="#graphic" />
+            <defs>
+                <symbol id="arrow-left" overflow="visible"
+                    viewBox="0 0 12 12"
+                    preserveAspectRatio="xMinYMid meet">
+                    <!-- left-pointing block arrow pointing to 0,0 point -->
+                    <path class="arrow" d="M0 0L5 -5, 5 -3, 12 -3, 12 3, 5 3, 5 5Z" />
+                </symbol>
+                <symbol id="arrow-right" overflow="visible"
+                    viewBox="0 0 12 12"
+                    preserveAspectRatio="xMinYMid meet">
+                    <!-- right-pointing block arrow pointing to 0,0 point -->
+                    <path class="arrow" transform="rotate(180)"
+                    d="M0 0L5 -5, 5 -3, 12 -3, 12 3, 5 3, 5 5Z" />
+                </symbol>
+                <symbol id="arrow-top" overflow="visible"
+                    viewBox="0 0 12 12"
+                    preserveAspectRatio="xMinYMid meet">
+                    <!-- top-pointing block arrow pointing to 0,0 point -->
+                    <path class="arrow" transform="rotate(90)"
+                    d="M0 0L5 -5, 5 -3, 12 -3, 12 3, 5 3, 5 5Z" />
+                </symbol>
+                <symbol id="arrow-bottom" overflow="visible"
+                    viewBox="0 0 12 12"
+                    preserveAspectRatio="xMinYMid meet">
+                    <!-- bottom-pointing block arrow pointing to 0,0 point -->
+                    <path class="arrow" transform="rotate(-90)"
+                    d="M0 0L5 -5, 5 -3, 12 -3, 12 3, 5 3, 5 5Z" />
+                </symbol>
+            </defs>
+            <g class="labels">
+                <text class="label" x="50%" y="50%">A</text>
+                <use xlink:href="#arrow-right" x="100%" y="50%" width="100" height="100" />
+                <text class="pointer right" x="100%" y="50%" dx="-50">B</text>
+                <use xlink:href="#arrow-bottom" x="50%" y="100%" width="100" height="100" />
+                <text class="pointer bottom" x="50%" y="100%" dy="-50">C</text>
+            </g>
+        </svg>
+        <svg class="print landscape" viewBox="800 0 1000 700">
+            <use xlink:href="#graphic" />
+            <g class="labels" transform="translate(800,0)">
+                <text class="label" x="50%" y="50%">B</text>
+                <use xlink:href="#arrow-left" x="0%" y="50%" width="100" height="100" />
+                <text class="pointer left" x="0%" y="50%" dx="50">A</text>
+                <use xlink:href="#arrow-bottom" x="50%" y="100%" width="100" height="100" />
+                <text class="pointer bottom" x="50%" y="100%" dy="-50">D</text>
+            </g>
+        </svg>
+        <svg class="print landscape" viewBox="0 500 1000 700">
+            <use xlink:href="#graphic" />
+            <g class="labels" transform="translate(0,500)">
+                <text class="label" x="50%" y="50%">C</text>
+                <use xlink:href="#arrow-right" x="100%" y="50%" width="100" height="100" />
+                <text class="pointer right" x="100%" y="50%" dx="-50">D</text>
+                <use xlink:href="#arrow-top" x="50%" y="0%" width="100" height="100" />
+                <text class="pointer top" x="50%" y="0%" dy="50">A</text>
+            </g>
+        </svg>
+        <svg class="print landscape" viewBox="800 500 1000 700">
+            <use xlink:href="#graphic" />
+            <g class="labels" transform="translate(800,500)">
+                <text class="label" x="50%" y="50%">D</text>
+                <use xlink:href="#arrow-left" x="0%" y="50%" width="100" height="100" />
+                <text class="pointer left" x="0%" y="50%" dx="50">C</text>
+                <use xlink:href="#arrow-top" x="50%" y="0%" width="100" height="100" />
+                <text class="pointer top" x="50%" y="0%" dy="50">B</text>
+            </g>
+        </svg>
+        <!-- For printing in portrait mode, the graphic is scaled down slightly
+        to fit on two pages.  Again, the content of each page will  overlap slightly. -->
+        <svg class="print portrait" viewBox="0 0 1000 1200">
+            <use xlink:href="#graphic" />
+            <g class="labels">
+                <text class="label" x="50%" y="50%">A</text>
+                <use xlink:href="#arrow-right" x="100%" y="50%" width="100" height="100" />
+                <text class="pointer right" x="100%" y="50%" dx="-50">B</text>
+            </g>
+        </svg>
+        <svg class="print portrait" viewBox="800 0 1000 1200">
+            <use xlink:href="#graphic" />
+            <g class="labels" transform="translate(800,0)">
+                <text class="label" x="50%" y="50%">B</text>
+                <use xlink:href="#arrow-left" x="0%" y="50%" width="100" height="100" />
+                <text class="pointer left" x="0%" y="50%" dx="50">A</text>
+            </g>
+        </svg>
+    </figure>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            var doc = document;
+            var g = doc.getElementById("graphic");
+            var svgNS = g.namespaceURI;
+            var r, t;
+            for (var i=0; i<18; i++) {
+                for (var j=0; j<12; j++) {
+                    r = doc.createElementNS(svgNS, "rect");
+                    r.setAttribute("width", "80");
+                    r.setAttribute("height", "80");
+                    r.setAttribute("x", (i*100 + 10));
+                    r.setAttribute("y", (j*100 + 10));
+                    r.style.setProperty("fill-opacity", ((i*j + 1)%20)/20, null);
+                    g.insertBefore(r, null);
+                    t = doc.createElementNS(svgNS, "text");
+                    t.setAttribute("x", (i*100 + 50));
+                    t.setAttribute("y", (j*100 + 50));
+                    t.setAttribute("class", "diagram");
+                    t.textContent = [i,j];
+                    g.insertBefore(t, null);
+                }  
+            }
+        });
+    </script>
+</body>

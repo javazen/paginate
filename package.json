@@ -1,0 +1,21 @@
+{
+  "name": "paginate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "jshint": "jshint ./src/*.js; true",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javazen/paginate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/javazen/paginate/issues"
+  },
+  "homepage": "https://github.com/javazen/paginate#readme"
+}
